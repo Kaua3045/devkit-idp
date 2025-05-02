@@ -35,7 +35,7 @@ idempotency-key:
 logging:
   level:
     ROOT: WARN
-    com.kaua.events.platform: DEBUG
+    com.kaua.devkit.platform: DEBUG
 
 server:
   port: 8081

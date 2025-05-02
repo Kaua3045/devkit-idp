@@ -1,4 +1,4 @@
-rootProject.name = 'events-platform'
+rootProject.name = 'devkit-idp'
 include 'domain'
 include 'application'
 include 'infrastructure'

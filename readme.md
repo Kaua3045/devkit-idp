@@ -1,4 +1,4 @@
-# Plataform de Eventos
+# Plataform interna de desenvolvimento
 
 ## Ferramentas utilizadas
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
@@ -9,7 +9,7 @@
 
 ## Sobre
 
-Uma plataforma muito parecida com a Sympla. Criar e gerenciar eventos e tickets.
+Uma plataforma interna de desenvolvimento.
 
 - Porquê decidiu fazer esse projeto?
     - Decidi fazer esse projeto para aprender mais sobre clean architecture, DDD e SOLID. Além de aprender mais sobre o Spring e o Java. Deploys com k8s, docker e argoCD.
@@ -52,7 +52,7 @@ Uma plataforma muito parecida com a Sympla. Criar e gerenciar eventos e tickets.
 1. Baixe a aplicação e instale as dependências:
 ```bash
 # Baixando o projeto e acessando o diretorio
-git clone https://github.com/Kaua3045/events-platform.git cd events-platform
+git clone https://github.com/Kaua3045/devkit-idp.git cd devkit-idp
 
 # Baixando as dependências
 ./gradlew dependencies  
