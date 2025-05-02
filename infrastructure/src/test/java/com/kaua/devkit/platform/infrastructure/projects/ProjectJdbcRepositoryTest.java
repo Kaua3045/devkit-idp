@@ -51,8 +51,8 @@ class ProjectJdbcRepositoryTest extends AbstractRepositoryTest {
     }
 
     @Test
-    void givenAnExistsTeamName_whenCallExistsByTeamName_thenReturnTrue() {
-        Assertions.assertEquals(0, countTeams());
+    void givenAnExistsProjectName_whenCallExistsByProjectName_thenReturnTrue() {
+        Assertions.assertEquals(0, countProjects());
         final var aProjectName = "invoices-project";
         final var aDescription = "invoice project blablababla";
         final var aTeamId = new TeamId(IdentifierUtils.generateNewMonotonicULID());
