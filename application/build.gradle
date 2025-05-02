@@ -3,7 +3,7 @@ plugins {
     id 'java-conventions'
 }
 
-group = 'com.kaua.events.platform.application'
+group = 'com.kaua.devkit.platform.application'
 
 dependencies {
     implementation(project(':domain'))
