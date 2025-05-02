@@ -1,7 +1,10 @@
 package com.kaua.devkit.platform.domain;
 
+import com.kaua.devkit.platform.domain.teams.Team;
 import com.kaua.devkit.platform.domain.users.*;
 import net.datafaker.Faker;
+
+import java.util.ArrayList;
 
 public final class Fixture {
 
@@ -19,6 +22,17 @@ public final class Fixture {
                     new Email(faker.internet().emailAddress()),
                     Password.of("12345678Am*"),
                     UserRole.USER
+            );
+        }
+    }
+
+    public static final class TeamFixture {
+        private TeamFixture() {}
+
+        public static Team newTeam() {
+            return Team.newTeam(
+                    "invoices-team",
+                    new ArrayList<>()
             );
         }
     }
