@@ -5,3 +5,12 @@ CREATE TABLE teams (
     updated_at TIMESTAMP WITH TIME ZONE NOT NULL,
     version BIGINT NOT NULL
 );
+
+CREATE TABLE teams_members (
+    id VARCHAR(26) NOT NULL PRIMARY KEY,
+    user_id VARCHAR(26) NOT NULL,
+    role VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE NOT NULL,
+    version BIGINT NOT NULL
+);
