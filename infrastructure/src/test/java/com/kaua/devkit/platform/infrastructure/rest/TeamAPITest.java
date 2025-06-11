@@ -41,6 +41,7 @@ class TeamAPITest {
     @Test
     void givenAValidRequest_whenCallCreateTeam_thenReturnTeamIdAndTeamName() throws Exception {
         final var aTeamName = "invoice-team";
+        final var aOwnerId = "1234567890";
 
         final var aExpectedTeamID = ULID.random().toString();
 
@@ -49,9 +50,10 @@ class TeamAPITest {
 
         var json = """
                 {
-                    "team_name": "%s"
+                    "team_name": "%s",
+                    "owner_id": "%s"
                 }
-                """.formatted(aTeamName);
+                """.formatted(aTeamName, aOwnerId);
 
         final var aRequest = MockMvcRequestBuilders.post("/v1/teams")
                 .with(ApiTest.admin())
@@ -71,8 +73,9 @@ class TeamAPITest {
 
         Mockito.verify(createTeamUseCase, Mockito.times(1)).execute(createTeamInputCaptor.capture());
 
-        final var aCreateUserInput = createTeamInputCaptor.getValue();
+        final var aCreateInput = createTeamInputCaptor.getValue();
 
-        Assertions.assertEquals(aTeamName, aCreateUserInput.teamName());
+        Assertions.assertEquals(aTeamName, aCreateInput.teamName());
+        Assertions.assertEquals(aOwnerId, aCreateInput.ownerId());
     }
 }
