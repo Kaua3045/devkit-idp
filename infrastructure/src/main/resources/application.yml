@@ -37,6 +37,12 @@ logging:
     ROOT: WARN
     com.kaua.devkit.platform: DEBUG
 
+web-client:
+  template-service:
+    base-url: "${web-client.template-service-url}/api"
+    read-timeout: 10_000 # milliseconds
+    connect-timeout: 10_000 # milliseconds
+
 server:
   port: 8081
   servlet:

@@ -14,7 +14,13 @@ server:
       worker: 10
       io: 2
 
+web-client:
+  template-service-url: "http://localhost:8085"
+
 spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.actuate.autoconfigure.metrics.export.otlp.OtlpMetricsExportAutoConfiguration
   datasource:
     driver-class-name: org.h2.Driver
     username: root
@@ -37,8 +43,8 @@ spring:
     enabled: true
     locations: classpath:db/migration
 
-otel:
-  exporter:
-    otlp:
-      endpoint: http://localhost:4318
-      compression: gzip
+#otel:
+#  exporter:
+#    otlp:
+#      endpoint: http://localhost:4318
+#      compression: gzip
