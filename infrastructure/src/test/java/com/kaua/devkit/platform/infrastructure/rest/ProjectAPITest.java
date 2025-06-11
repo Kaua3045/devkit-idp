@@ -77,10 +77,10 @@ class ProjectAPITest {
 
         Mockito.verify(createProjectUseCase, Mockito.times(1)).execute(createProjectInputCaptor.capture());
 
-        final var aCreateUserInput = createProjectInputCaptor.getValue();
+        final var aCreateInput = createProjectInputCaptor.getValue();
 
-        Assertions.assertEquals(aProjectName, aCreateUserInput.projectName());
-        Assertions.assertEquals(aDescription, aCreateUserInput.description());
-        Assertions.assertEquals(aTeamId.value().toString(), aCreateUserInput.teamId());
+        Assertions.assertEquals(aProjectName, aCreateInput.projectName());
+        Assertions.assertEquals(aDescription, aCreateInput.description());
+        Assertions.assertEquals(aTeamId.value().toString(), aCreateInput.teamId());
     }
 }
