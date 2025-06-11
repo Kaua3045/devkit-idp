@@ -55,9 +55,9 @@ public class SecurityConfig {
     ) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(Customizer.withDefaults())
+                .cors(Customizer.withDefaults()) // TODO remove teams, projects and applications permit all
                 .authorizeHttpRequests(authorize ->
-                        authorize.requestMatchers("/v1/users").permitAll()
+                        authorize.requestMatchers("/v1/users", "/v1/teams", "/v1/projects", "/v1/applications").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/.well-known/**").permitAll()
                                 .requestMatchers("/v1/users/me/user").hasAnyAuthority("USER")
                                 .anyRequest().authenticated())
