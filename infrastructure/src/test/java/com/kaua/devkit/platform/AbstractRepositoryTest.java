@@ -1,14 +1,13 @@
 package com.kaua.devkit.platform;
 
-import com.kaua.devkit.platform.application.repositories.AuthorizationCodeRepository;
-import com.kaua.devkit.platform.application.repositories.AuthorizationTokenRepository;
-import com.kaua.devkit.platform.application.repositories.ProjectRepository;
-import com.kaua.devkit.platform.application.repositories.TeamRepository;
+import com.kaua.devkit.platform.application.repositories.*;
+import com.kaua.devkit.platform.infrastructure.applications.ApplicationJdbcRepository;
 import com.kaua.devkit.platform.infrastructure.jdbc.JdbcClientAdapter;
 import com.kaua.devkit.platform.infrastructure.oauth.code.AuthorizationCodeJdbcRepository;
 import com.kaua.devkit.platform.infrastructure.oauth.token.AuthorizationTokenJdbcRepository;
 import com.kaua.devkit.platform.infrastructure.projects.ProjectJdbcRepository;
 import com.kaua.devkit.platform.infrastructure.teams.TeamJdbcRepository;
+import com.kaua.devkit.platform.infrastructure.teams.TeamMemberJdbcRepository;
 import com.kaua.devkit.platform.infrastructure.users.UserJdbcRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -28,6 +27,8 @@ public abstract class AbstractRepositoryTest {
     private static final String AUTHORIZATION_TOKEN_TABLE = "authorization_tokens";
     private static final String TEAMS_TABLE = "teams";
     private static final String PROJECTS_TABLE = "projects";
+    private static final String APPLICATIONS_TABLE = "applications";
+    private static final String TEAMS_MEMBERS_TABLE = "teams_members";
 
     @Autowired
     private JdbcClient jdbcClient;
@@ -37,6 +38,8 @@ public abstract class AbstractRepositoryTest {
     private AuthorizationTokenRepository authorizationTokenRepository;
     private TeamRepository teamRepository;
     private ProjectRepository projectRepository;
+    private ApplicationRepository applicationRepository;
+    private TeamMemberRepository teamMemberRepository;
 
     @BeforeEach
     void setUp() {
@@ -45,6 +48,8 @@ public abstract class AbstractRepositoryTest {
         this.authorizationTokenRepository = new AuthorizationTokenJdbcRepository(new JdbcClientAdapter(jdbcClient));
         this.teamRepository = new TeamJdbcRepository(new JdbcClientAdapter(jdbcClient));
         this.projectRepository = new ProjectJdbcRepository(new JdbcClientAdapter(jdbcClient));
+        this.applicationRepository = new ApplicationJdbcRepository(new JdbcClientAdapter(jdbcClient));
+        this.teamMemberRepository = new TeamMemberJdbcRepository(new JdbcClientAdapter(jdbcClient));
     }
 
     protected int countUsers() {
@@ -67,6 +72,14 @@ public abstract class AbstractRepositoryTest {
         return JdbcTestUtils.countRowsInTable(jdbcClient, PROJECTS_TABLE);
     }
 
+    protected int countApplications() {
+        return JdbcTestUtils.countRowsInTable(jdbcClient, APPLICATIONS_TABLE);
+    }
+
+    protected int countTeamMembers() {
+        return JdbcTestUtils.countRowsInTable(jdbcClient, TEAMS_MEMBERS_TABLE);
+    }
+
     public UserJdbcRepository userRepository() {
         return userJdbcRepository;
     }
@@ -85,5 +98,13 @@ public abstract class AbstractRepositoryTest {
 
     public ProjectRepository projectRepository() {
         return projectRepository;
+    }
+
+    public ApplicationRepository applicationRepository() {
+        return applicationRepository;
+    }
+
+    public TeamMemberRepository teamMemberRepository() {
+        return teamMemberRepository;
     }
 }
