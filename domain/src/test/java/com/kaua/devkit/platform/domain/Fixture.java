@@ -1,7 +1,10 @@
 package com.kaua.devkit.platform.domain;
 
+import com.kaua.devkit.platform.domain.projects.Project;
 import com.kaua.devkit.platform.domain.teams.Team;
+import com.kaua.devkit.platform.domain.teams.TeamId;
 import com.kaua.devkit.platform.domain.users.*;
+import com.kaua.devkit.platform.domain.utils.IdentifierUtils;
 import net.datafaker.Faker;
 
 import java.util.ArrayList;
@@ -33,6 +36,18 @@ public final class Fixture {
             return Team.newTeam(
                     "invoices-team",
                     new ArrayList<>()
+            );
+        }
+    }
+
+    public static final class ProjectFixture {
+        private ProjectFixture() {}
+
+        public static Project newProject() {
+            return Project.newProject(
+                    "invoices-project",
+                    "invoices-project bla bla bla",
+                    new TeamId(IdentifierUtils.generateNewMonotonicULID())
             );
         }
     }
