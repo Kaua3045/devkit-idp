@@ -1,6 +1,9 @@
 package com.kaua.devkit.platform.infrastructure.configurations.usecases;
 
+import com.kaua.devkit.platform.application.gateways.TemplateGateway;
+import com.kaua.devkit.platform.application.repositories.TeamMemberRepository;
 import com.kaua.devkit.platform.application.repositories.TeamRepository;
+import com.kaua.devkit.platform.application.repositories.UserRepository;
 import com.kaua.devkit.platform.application.usecases.teams.create.CreateTeamUseCase;
 import com.kaua.devkit.platform.application.usecases.teams.create.DefaultCreateTeamUseCase;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +13,17 @@ import org.springframework.context.annotation.Configuration;
 public class TeamUseCaseConfig {
 
     @Bean
-    public CreateTeamUseCase createTeamUseCase(final TeamRepository teamRepository) {
-        return new DefaultCreateTeamUseCase(teamRepository);
+    public CreateTeamUseCase createTeamUseCase(
+            final TeamRepository teamRepository,
+            final TeamMemberRepository teamMemberRepository,
+            final UserRepository userRepository,
+            final TemplateGateway templateGateway
+    ) {
+        return new DefaultCreateTeamUseCase(
+                teamRepository,
+                teamMemberRepository,
+                userRepository,
+                templateGateway
+        );
     }
 }
